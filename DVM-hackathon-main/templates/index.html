@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 
-                <a href="#offerings" class="nav-link">What We Offer</a>
+                <a href="{{ url_for('offerings') }}" class="nav-link">What We Offer</a>
                 
                 <div class="nav-dropdown">
                     <button class="nav-dropdown-btn">AI Courses <i class="fas fa-chevron-down"></i></button>
@@ -111,38 +111,11 @@
                         </div>
                     </div>
 
-                    <!-- Program Cards -->
-                    <div class="program-grid" id="offerings">
-                        <div class="program-card program-card-1">
-                            <div class="program-icon">🧠</div>
-                            <h3>Prompt Engineering</h3>
-                            <p>Master AI communication and optimization techniques</p>
-                        </div>
-                        <div class="program-card program-card-2">
-                            <div class="program-icon">🏠</div>
-                            <h3>AI for Daily Life</h3>
-                            <p>Integrate AI tools into everyday activities</p>
-                        </div>
-                        <div class="program-card program-card-3">
-                            <div class="program-icon">🌐</div>
-                            <h3>AI Website Development</h3>
-                            <p>Build intelligent websites with AI assistance</p>
-                        </div>
-                        <div class="program-card program-card-4">
-                            <div class="program-icon">📱</div>
-                            <h3>AI Application Development</h3>
-                            <p>Create smart applications using AI frameworks</p>
-                        </div>
-                        <div class="program-card program-card-5">
-                            <div class="program-icon">🎮</div>
-                            <h3>AI Game Development</h3>
-                            <p>Design intelligent games with AI-powered features</p>
-                        </div>
-                        <div class="program-card program-card-6">
-                            <div class="program-icon">🎬</div>
-                            <h3>AI Film Making</h3>
-                            <p>Create cinematic content with AI tools</p>
-                        </div>
+                    <!-- Quick Overview -->
+                    <div class="overview-section">
+                        <h2 class="section-title">Transform Your Future with AI</h2>
+                        <p class="section-description">Join our comprehensive AI education program and become part of the next generation of innovators</p>
+                        <a href="{{ url_for('offerings') }}" class="cta-btn primary">Explore Our Programs</a>
                     </div>
                 </div>
             </section>
@@ -466,14 +439,6 @@
                             <div class="contact-item">
                                 <i class="fas fa-map-marker-alt"></i>
                                 <span>Pilani, Rajasthan<br>India - 333031</span>
-                            </div>
-                        </div>
-                        
-                        <div class="newsletter">
-                            <h5 class="newsletter-title">Stay Updated</h5>
-                            <div class="newsletter-form">
-                                <input type="email" placeholder="Enter your email" class="newsletter-input">
-                                <button class="newsletter-btn">Subscribe</button>
                             </div>
                         </div>
                     </div>

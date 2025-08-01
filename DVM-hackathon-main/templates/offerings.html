@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What We Offer - AI-Driven School</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">
+                        {{ message }}
+                        <button class="flash-close" onclick="this.parentElement.style.display='none'">&times;</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI-Driven School Logo" class="logo">
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#about" class="nav-link">About</a>
+                
+                <div class="nav-dropdown">
+                    <button class="nav-dropdown-btn">Blogs & Stories <i class="fas fa-chevron-down"></i></button>
+                    <div class="nav-dropdown-content">
+                        <a href="#success-stories">Success Stories</a>
+                        <a href="#achievements">Student Achievements</a>
+                        <a href="#transformations">School Transformations</a>
+                        <a href="#blog">AI Education Blog</a>
+                        <a href="#news">News & Updates</a>
+                    </div>
+                </div>
+                
+                <a href="{{ url_for('offerings') }}" class="nav-link">What We Offer</a>
+                
+                <div class="nav-dropdown">
+                    <button class="nav-dropdown-btn">AI Courses <i class="fas fa-chevron-down"></i></button>
+                    <div class="nav-dropdown-content">
+                        <div class="dropdown-header">
+                            <div class="prompts-count">50000+ Prompts</div>
+                            <div class="prompts-desc">AI-powered learning resources</div>
+                        </div>
+                        <a href="#app-dev">App Development</a>
+                        <a href="#game-design">Game Design</a>
+                        <a href="#ai-film">AI Film Making</a>
+                        <a href="#prompts">Browse All Prompts</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Auth Buttons -->
+            <div class="auth-buttons">
+                <a href="{{ url_for('register') }}" class="signup-btn">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="landing-page">
+    <main class="offerings-page">
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI Driven School" class="main-logo">
+                </div>
+                
+                <div class="hero-badge">
+                    <span class="badge-text">🚀 Comprehensive AI Education</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    What We <span class="gradient-text">Offer</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Discover our comprehensive AI education modules designed to empower the next generation of innovators. From prompt engineering to AI filmmaking, we cover all aspects of modern AI technology.
+                </p>
+            </div>
+        </section>
+
+        <section class="offerings-content">
+            <div class="container">
+                <!-- Program Cards -->
+                <div class="program-grid">
+                    <div class="program-card program-card-1">
+                        <div class="program-icon">🧠</div>
+                        <h3>Prompt Engineering</h3>
+                        <p>Master AI communication and optimization techniques. Learn to craft effective prompts for various AI models and understand the nuances of human-AI interaction.</p>
+                        <div class="program-features">
+                            <span class="feature">• Advanced prompt techniques</span>
+                            <span class="feature">• Model optimization</span>
+                            <span class="feature">• Real-world applications</span>
+                        </div>
+                    </div>
+                    <div class="program-card program-card-2">
+                        <div class="program-icon">🏠</div>
+                        <h3>AI for Daily Life</h3>
+                        <p>Integrate AI tools into everyday activities. Discover how AI can enhance productivity, creativity, and problem-solving in personal and professional contexts.</p>
+                        <div class="program-features">
+                            <span class="feature">• Personal AI assistants</span>
+                            <span class="feature">• Productivity automation</span>
+                            <span class="feature">• Smart home integration</span>
+                        </div>
+                    </div>
+                    <div class="program-card program-card-3">
+                        <div class="program-icon">🌐</div>
+                        <h3>AI Website Development</h3>
+                        <p>Build intelligent websites with AI assistance. Learn modern web development enhanced with AI tools for design, content creation, and user experience optimization.</p>
+                        <div class="program-features">
+                            <span class="feature">• AI-powered design</span>
+                            <span class="feature">• Intelligent content generation</span>
+                            <span class="feature">• User behavior analysis</span>
+                        </div>
+                    </div>
+                    <div class="program-card program-card-4">
+                        <div class="program-icon">📱</div>
+                        <h3>AI Application Development</h3>
+                        <p>Create smart applications using AI frameworks. Develop mobile and desktop applications that leverage machine learning and artificial intelligence capabilities.</p>
+                        <div class="program-features">
+                            <span class="feature">• ML model integration</span>
+                            <span class="feature">• Cross-platform development</span>
+                            <span class="feature">• AI API implementation</span>
+                        </div>
+                    </div>
+                    <div class="program-card program-card-5">
+                        <div class="program-icon">🎮</div>
+                        <h3>AI Game Development</h3>
+                        <p>Design intelligent games with AI-powered features. Create engaging gaming experiences using AI for character behavior, procedural generation, and adaptive gameplay.</p>
+                        <div class="program-features">
+                            <span class="feature">• Intelligent NPCs</span>
+                            <span class="feature">• Procedural content</span>
+                            <span class="feature">• Adaptive difficulty</span>
+                        </div>
+                    </div>
+                    <div class="program-card program-card-6">
+                        <div class="program-icon">🎬</div>
+                        <h3>AI Film Making</h3>
+                        <p>Create cinematic content with AI tools. Learn video production, editing, and post-production techniques enhanced by artificial intelligence for professional results.</p>
+                        <div class="program-features">
+                            <span class="feature">• AI video editing</span>
+                            <span class="feature">• Automated effects</span>
+                            <span class="feature">• Content optimization</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI-Driven School Logo" class="footer-logo">
+                        <p class="footer-description">Transforming education across India with cutting-edge AI curriculum and innovative teaching methods. Join the future of learning today.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-list">
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#offerings">What We Offer</a></li>
+                            <li><a href="#testimonials">Success Stories</a></li>
+                            <li><a href="#">Curriculum</a></li>
+                            <li><a href="#">Teacher Training</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-title">Support</h4>
+                        <ul class="footer-list">
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">API Reference</a></li>
+                            <li><a href="#">Community Forum</a></li>
+                            <li><a href="#">System Status</a></li>
+                            <li><a href="#">Contact Support</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-contact">
+                        <h4 class="footer-title">Contact Us</h4>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>1.ssoni1999@gmail.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+91 7073630877</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Pilani, Rajasthan<br>India - 333031</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 AI-Driven School. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+
+    </div>
+</body>
+</html>

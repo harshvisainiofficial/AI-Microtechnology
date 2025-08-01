@@ -168,6 +168,10 @@ def curriculum():
         return redirect(url_for('login'))
     return render_template('curriculum.html')
 
+@app.route('/offerings')
+def offerings():
+    return render_template('offerings.html')
+
 @app.route('/hackathon', methods=['GET', 'POST'])
 def hackathon():
     if 'username' not in session:
