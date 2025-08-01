@@ -16,11 +16,14 @@ def init_db():
             full_name TEXT,
             school_name TEXT,
             class TEXT,
-            roll_no TEXT,
             password TEXT,
             phone_no TEXT,
             email TEXT,
-            birthdate TEXT
+            birthdate TEXT,
+            country TEXT,
+            state TEXT,
+            city TEXT,
+            address TEXT
         )''')
         c.execute('''CREATE TABLE teams (
             team_name TEXT PRIMARY KEY,
@@ -59,35 +62,8 @@ def generate_username(full_name, birthdate):
     birthdate_formatted = birthdate.replace('-', '')  # Remove hyphens (YYYY-MM-DD to YYYYMMDD)
     return f"{lower_name}{birthdate_formatted}"
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        full_name = request.form['full_name']
-        school_name = request.form['school_name']
-        class_name = request.form['class']
-        roll_no = request.form['roll_no']
-        password = request.form['password']
-        phone_no = request.form['phone_no']
-        email = request.form['email']
-        birthdate = request.form['birthdate']
-        username = generate_username(full_name, birthdate)
-
-        conn = sqlite3.connect('users.db')
-        c = conn.cursor()
-        try:
-            c.execute('''INSERT INTO users (username, full_name, school_name, class, roll_no, password, phone_no, email, birthdate)
-                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)''',
-                      (username, full_name, school_name, class_name, roll_no, password, phone_no, email, birthdate))
-            # Add credits row
-            now = datetime.datetime.now().timestamp()
-            c.execute('INSERT INTO credits (username, points, last_update) VALUES (?, ?, ?)', (username, 0, now))
-            conn.commit()
-            flash(f'Successfully Registered! Your username is: {username}', 'success')
-            return redirect(url_for('login'))
-        except sqlite3.IntegrityError:
-            flash('Username already exists! Please try again.', 'error')
-        finally:
-            conn.close()
     return render_template('index.html')
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -96,7 +72,6 @@ def register():
         full_name = request.form['full_name']
         school_name = request.form['school_name']
         class_name = request.form['class']
-        roll_no = request.form['roll_no']
         password = request.form['password']
         phone_no = request.form['phone_no']
         email = request.form['email']
@@ -106,9 +81,9 @@ def register():
         conn = sqlite3.connect('users.db')
         c = conn.cursor()
         try:
-            c.execute('''INSERT INTO users (username, full_name, school_name, class, roll_no, password, phone_no, email, birthdate)
-                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)''',
-                      (username, full_name, school_name, class_name, roll_no, password, phone_no, email, birthdate))
+            c.execute('''INSERT INTO users (username, full_name, school_name, class, password, phone_no, email, birthdate)
+                         VALUES (?, ?, ?, ?, ?, ?, ?, ?)''',
+                      (username, full_name, school_name, class_name, password, phone_no, email, birthdate))
             # Add credits row
             now = datetime.datetime.now().timestamp()
             c.execute('INSERT INTO credits (username, points, last_update) VALUES (?, ?, ?)', (username, 0, now))

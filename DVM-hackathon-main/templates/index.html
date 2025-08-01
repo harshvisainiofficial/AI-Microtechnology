@@ -3,15 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Driven School - Transforming Education with AI-Driven Learning | Best AI Education Platform 2025</title>
-    <meta name="description" content="Transforming Education with AI-Driven Learning - Leading AI education platform helping students build real-world projects. Discover how AI revolutionizes K-12 education with personalized learning." />
-    <meta name="keywords" content="AI in education, AI-driven learning, artificial intelligence in schools, AI education platform, AI for students, personalized learning with AI, AI in K-12 education, AI learning tools" />
+    <title>AI-Driven School - Leading AI Education Platform</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">
+                        {{ message }}
+                        <button class="flash-close" onclick="this.parentElement.style.display='none'">&times;</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI-Driven School Logo" class="logo">
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#about" class="nav-link">About</a>
+                
+                <div class="nav-dropdown">
+                    <button class="nav-dropdown-btn">Blogs & Stories <i class="fas fa-chevron-down"></i></button>
+                    <div class="nav-dropdown-content">
+                        <a href="#success-stories">Success Stories</a>
+                        <a href="#achievements">Student Achievements</a>
+                        <a href="#transformations">School Transformations</a>
+                        <a href="#blog">AI Education Blog</a>
+                        <a href="#news">News & Updates</a>
+                    </div>
+                </div>
+                
+                <a href="#offerings" class="nav-link">What We Offer</a>
+                <a href="#franchise" class="nav-link">Franchise</a>
+                
+                <div class="nav-dropdown">
+                    <button class="nav-dropdown-btn">AI Courses <i class="fas fa-chevron-down"></i></button>
+                    <div class="nav-dropdown-content">
+                        <div class="dropdown-header">
+                            <div class="prompts-count">50000+ Prompts</div>
+                            <div class="prompts-desc">AI-powered learning resources</div>
+                        </div>
+                        <a href="#app-dev">App Development</a>
+                        <a href="#game-design">Game Design</a>
+                        <a href="#ai-film">AI Film Making</a>
+                        <a href="#robotics">Robotics</a>
+                        <a href="#prompts">Browse All Prompts</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Auth Buttons -->
+            <div class="auth-buttons">
+                <a href="{{ url_for('register') }}" class="signup-btn">Sign Up</a>
+            </div>
+        </div>
+    </header>
     <div class="landing-page">
         <!-- Main Content Area -->
         <div class="main-content">
@@ -131,78 +188,293 @@
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
-
-        <!-- Registration Sidebar -->
-        <div class="registration-sidebar">
-            <div class="registration-container">
-                <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI Driven School Logo" class="sidebar-logo">
-                <h2 class="sidebar-title">Join Our AI-Driven Programs</h2>
-                <p class="sidebar-subtitle">Start your journey in AI education today</p>
-                
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        <div class="flash-message {{ messages[0][0] }}">
-                            {{ messages[0][1] }}
-                        </div>
-                    {% endif %}
-                {% endwith %}
-                
-                <form method="POST" class="registration-form">
-                    <div class="form-group">
-                        <label for="full_name">Full Name</label>
-                        <input type="text" id="full_name" name="full_name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="school_name">School Name</label>
-                        <input type="text" id="school_name" name="school_name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="class">Class</label>
-                        <select id="class" name="class" required>
-                            <option value="" disabled selected>Select your class</option>
-                            <option value="1st">1st</option>
-                            <option value="2nd">2nd</option>
-                            <option value="3rd">3rd</option>
-                            <option value="4th">4th</option>
-                            <option value="5th">5th</option>
-                            <option value="6th">6th</option>
-                            <option value="7th">7th</option>
-                            <option value="8th">8th</option>
-                            <option value="9th">9th</option>
-                            <option value="10th">10th</option>
-                            <option value="11th">11th</option>
-                            <option value="12th">12th</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="roll_no">Roll Number</label>
-                        <input type="text" id="roll_no" name="roll_no" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone_no">Phone No.</label>
-                        <input type="tel" id="phone_no" name="phone_no" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email ID</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="birthdate">Birthdate</label>
-                        <input type="date" id="birthdate" name="birthdate" required>
-                    </div>
-                    <button type="submit" class="register-btn">Join Now</button>
-                </form>
-                <div class="sidebar-link">
-                    <a href="{{ url_for('login') }}">Already registered? Login here</a>
-                </div>
             </div>
         </div>
+
+        <!-- AI Education Blog Section -->
+        <section id="blog" class="blog-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">📚 Knowledge Hub</div>
+                    <h2 class="section-title">The Future of Learning: <span class="gradient-text">AI in Education</span></h2>
+                    <p class="section-description">Stay updated with the latest trends, research, and insights on how artificial intelligence is transforming education worldwide.</p>
+                </div>
+
+                <div class="featured-article">
+                    <div class="article-content">
+                        <div class="featured-badge">Featured Article</div>
+                        <h3 class="article-title">How AI-Driven Schools Are Revolutionizing Education in 2025</h3>
+                        <p class="article-excerpt">Discover how artificial intelligence is transforming traditional classrooms into personalized learning environments that adapt to every student's needs.</p>
+                        <div class="article-meta">
+                            <span class="author">Dr. Sarah Johnson</span>
+                            <span class="date">January 15, 2025</span>
+                            <span class="read-time">8 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-grid">
+                    <div class="blog-card">
+                        <div class="blog-category">AI Learning Tools</div>
+                        <h4 class="blog-title">Top 15 AI Tools for Teachers and Students in 2025</h4>
+                        <p class="blog-excerpt">From Quizlet Q-Chat to Duolingo's AI tutors, explore the most effective AI learning tools.</p>
+                        <div class="blog-meta">
+                            <span class="author">Prof. Michael Chen</span>
+                            <span class="read-time">12 min read</span>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-category">K-12 Education</div>
+                        <h4 class="blog-title">Why AI Is the Future of K-12 Education: A Complete Guide</h4>
+                        <p class="blog-excerpt">Understanding how AI addresses learning gaps and prepares students for a technology-driven future.</p>
+                        <div class="blog-meta">
+                            <span class="author">Dr. Priya Sharma</span>
+                            <span class="read-time">10 min read</span>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-category">Educational Research</div>
+                        <h4 class="blog-title">How Does AI Help Students Learn? The Science Behind Personalized Education</h4>
+                        <p class="blog-excerpt">Explore the cognitive science and machine learning algorithms that make AI-powered learning effective.</p>
+                        <div class="blog-meta">
+                            <span class="author">Dr. James Wilson</span>
+                            <span class="read-time">15 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transforming Education Section -->
+        <section id="transforming-education" class="transforming-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">🚀 Educational Revolution</div>
+                    <h2 class="section-title">Revolutionizing Education with <span class="gradient-text">AI at AI-Driven School</span></h2>
+                    <p class="section-description">Discover how artificial intelligence is transforming traditional education into a personalized, efficient, and future-ready learning experience.</p>
+                </div>
+
+                <div class="transformations-grid">
+                    <div class="transformation-card">
+                        <div class="transformation-icon cyan-gradient">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="transformation-title">Personalized Learning Pathways</h3>
+                        <p class="transformation-description">AI adapts to each student's learning style, pace, and preferences, creating customized educational experiences.</p>
+                        <ul class="transformation-benefits">
+                            <li>Adaptive content delivery</li>
+                            <li>Individual progress tracking</li>
+                            <li>Learning style optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="transformation-card">
+                        <div class="transformation-icon emerald-gradient">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="transformation-title">Automated Administrative Tasks</h3>
+                        <p class="transformation-description">Free up valuable teacher time by automating grading, lesson planning, and administrative workflows.</p>
+                        <ul class="transformation-benefits">
+                            <li>Automated grading systems</li>
+                            <li>Smart lesson planning</li>
+                            <li>Attendance tracking</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="transformation-card">
+                        <div class="transformation-icon purple-gradient">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="transformation-title">Enhanced Student Engagement</h3>
+                        <p class="transformation-description">Interactive AI tutors, virtual labs, and gamified learning experiences keep students motivated.</p>
+                        <ul class="transformation-benefits">
+                            <li>AI-powered chatbots</li>
+                            <li>Virtual reality labs</li>
+                            <li>Gamified assessments</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="transformation-card">
+                        <div class="transformation-icon orange-gradient">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3 class="transformation-title">Future-Ready Career Preparation</h3>
+                        <p class="transformation-description">Prepare students for tomorrow's job market with hands-on experience in AI and emerging technologies.</p>
+                        <ul class="transformation-benefits">
+                            <li>Real-world AI projects</li>
+                            <li>Industry partnerships</li>
+                            <li>Certification programs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section id="programs" class="programs-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">🎓 Our Programs</div>
+                    <h2 class="section-title">Comprehensive <span class="gradient-text">AI-Powered Courses</span></h2>
+                    <p class="section-description">Master cutting-edge technologies with our industry-leading curriculum designed for the future workforce.</p>
+                </div>
+
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <div class="program-icon cyan-gradient">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="program-title">AI-Powered Web Development</h3>
+                        <p class="program-description">Learn to build responsive websites and web applications using modern frameworks and AI tools.</p>
+                        <div class="program-meta">
+                            <span class="duration">6 months</span>
+                            <span class="level">Beginner to Advanced</span>
+                            <span class="students">2,500+ students</span>
+                        </div>
+                        <ul class="program-features">
+                            <li>HTML5, CSS3, JavaScript fundamentals</li>
+                            <li>React.js and modern frameworks</li>
+                            <li>AI-assisted coding with GitHub Copilot</li>
+                            <li>Real client projects and portfolio building</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="program-card">
+                        <div class="program-icon emerald-gradient">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="program-title">Mobile App Development with AI</h3>
+                        <p class="program-description">Create native and cross-platform mobile applications integrated with AI features.</p>
+                        <div class="program-meta">
+                            <span class="duration">8 months</span>
+                            <span class="level">Intermediate</span>
+                            <span class="students">1,800+ students</span>
+                        </div>
+                        <ul class="program-features">
+                            <li>React Native and Flutter development</li>
+                            <li>AI integration and ML models</li>
+                            <li>App Store deployment strategies</li>
+                            <li>Push notifications and analytics</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="program-card">
+                        <div class="program-icon purple-gradient">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3 class="program-title">Game Development & Design</h3>
+                        <p class="program-description">Design and develop interactive games using modern game engines and AI for NPCs.</p>
+                        <div class="program-meta">
+                            <span class="duration">10 months</span>
+                            <span class="level">Beginner to Advanced</span>
+                            <span class="students">1,200+ students</span>
+                        </div>
+                        <ul class="program-features">
+                            <li>Unity 3D and Unreal Engine basics</li>
+                            <li>Game design principles and storytelling</li>
+                            <li>AI-powered NPC behavior</li>
+                            <li>Multiplayer game development</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="program-card">
+                        <div class="program-icon orange-gradient">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="program-title">AI Film Making & Content Creation</h3>
+                        <p class="program-description">Master video production, editing, and AI-powered content creation tools.</p>
+                        <div class="program-meta">
+                            <span class="duration">5 months</span>
+                            <span class="level">Beginner to Intermediate</span>
+                            <span class="students">900+ students</span>
+                        </div>
+                        <ul class="program-features">
+                            <li>Video production and cinematography</li>
+                            <li>AI-powered video editing tools</li>
+                            <li>Script writing with AI assistance</li>
+                            <li>YouTube and social media optimization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI-Driven School Logo" class="footer-logo">
+                        <p class="footer-description">Transforming education across India with cutting-edge AI curriculum and innovative teaching methods. Join the future of learning today.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-list">
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#offerings">What We Offer</a></li>
+                            <li><a href="#franchise">Franchise Model</a></li>
+                            <li><a href="#testimonials">Success Stories</a></li>
+                            <li><a href="#">Curriculum</a></li>
+                            <li><a href="#">Teacher Training</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-title">Support</h4>
+                        <ul class="footer-list">
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">API Reference</a></li>
+                            <li><a href="#">Community Forum</a></li>
+                            <li><a href="#">System Status</a></li>
+                            <li><a href="#">Contact Support</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-contact">
+                        <h4 class="footer-title">Contact Us</h4>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>1.ssoni1999@gmail.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+91 7073630877</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Pilani, Rajasthan<br>India - 333031</span>
+                            </div>
+                        </div>
+                        
+                        <div class="newsletter">
+                            <h5 class="newsletter-title">Stay Updated</h5>
+                            <div class="newsletter-form">
+                                <input type="email" placeholder="Enter your email" class="newsletter-input">
+                                <button class="newsletter-btn">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 AI-Driven School. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+
     </div>
 </body>
 </html>
