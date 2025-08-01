@@ -45,7 +45,6 @@
                 </div>
                 
                 <a href="#offerings" class="nav-link">What We Offer</a>
-                <a href="#franchise" class="nav-link">Franchise</a>
                 
                 <div class="nav-dropdown">
                     <button class="nav-dropdown-btn">AI Courses <i class="fas fa-chevron-down"></i></button>
@@ -57,7 +56,6 @@
                         <a href="#app-dev">App Development</a>
                         <a href="#game-design">Game Design</a>
                         <a href="#ai-film">AI Film Making</a>
-                        <a href="#robotics">Robotics</a>
                         <a href="#prompts">Browse All Prompts</a>
                     </div>
                 </div>
@@ -81,6 +79,10 @@
                 </div>
                 
                 <div class="hero-content">
+                    <div class="hero-logo">
+                        <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI-Driven School Logo" class="main-logo">
+                    </div>
+                    
                     <div class="hero-badge">
                         <span>🚀 Leading AI Education Platform 2025</span>
                     </div>
@@ -110,26 +112,36 @@
                     </div>
 
                     <!-- Program Cards -->
-                    <div class="program-grid">
+                    <div class="program-grid" id="offerings">
                         <div class="program-card program-card-1">
-                            <div class="program-icon">🌐</div>
-                            <h3>Website Development</h3>
-                            <p>Build websites for SMEs & communities</p>
+                            <div class="program-icon">🧠</div>
+                            <h3>Prompt Engineering</h3>
+                            <p>Master AI communication and optimization techniques</p>
                         </div>
                         <div class="program-card program-card-2">
-                            <div class="program-icon">🎮</div>
-                            <h3>Game Design</h3>
-                            <p>Create interactive games</p>
+                            <div class="program-icon">🏠</div>
+                            <h3>AI for Daily Life</h3>
+                            <p>Integrate AI tools into everyday activities</p>
                         </div>
                         <div class="program-card program-card-3">
-                            <div class="program-icon">🎬</div>
-                            <h3>AI Film Making</h3>
-                            <p>Create with AI tools</p>
+                            <div class="program-icon">🌐</div>
+                            <h3>AI Website Development</h3>
+                            <p>Build intelligent websites with AI assistance</p>
                         </div>
                         <div class="program-card program-card-4">
-                            <div class="program-icon">🤖</div>
-                            <h3>Robotics</h3>
-                            <p>Smart tech learning</p>
+                            <div class="program-icon">📱</div>
+                            <h3>AI Application Development</h3>
+                            <p>Create smart applications using AI frameworks</p>
+                        </div>
+                        <div class="program-card program-card-5">
+                            <div class="program-icon">🎮</div>
+                            <h3>AI Game Development</h3>
+                            <p>Design intelligent games with AI-powered features</p>
+                        </div>
+                        <div class="program-card program-card-6">
+                            <div class="program-icon">🎬</div>
+                            <h3>AI Film Making</h3>
+                            <p>Create cinematic content with AI tools</p>
                         </div>
                     </div>
                 </div>
@@ -422,7 +434,6 @@
                         <ul class="footer-list">
                             <li><a href="#about">About Us</a></li>
                             <li><a href="#offerings">What We Offer</a></li>
-                            <li><a href="#franchise">Franchise Model</a></li>
                             <li><a href="#testimonials">Success Stories</a></li>
                             <li><a href="#">Curriculum</a></li>
                             <li><a href="#">Teacher Training</a></li>
