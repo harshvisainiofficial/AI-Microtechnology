@@ -211,7 +211,7 @@ body {
 }
 
 .nav-brand .logo {
-    height: 40px;
+    height: 50px;
     width: auto;
 }
 
@@ -364,12 +364,12 @@ body {
 
 /* Hero Section */
 .hero-section {
-    min-height: 100vh;
+    min-height: 20vh;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 0.25rem 2rem;
     text-align: center;
 }
 
@@ -541,8 +541,25 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+    .program-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 768px) {
+    .program-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        padding: 0 1rem;
+    }
 }
 
 .program-card {
@@ -556,6 +573,12 @@ body {
     animation: fadeInUp 0.6s ease forwards;
     opacity: 1;
     transform: translateY(0);
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 @keyframes fadeInUp {
@@ -599,11 +622,40 @@ body {
 
 .offerings-page {
     min-height: 100vh;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    /* Using the same background as landing-page */
+    background: transparent;
+}
+
+.about-page .hero-section {
+    min-height: 0;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    margin-top: 0;
+    padding-top: 0.5rem;
+}
+
+.about-page .hero-logo {
+    margin-bottom: 0.1rem;
+}
+
+.about-page .hero-badge {
+    margin-bottom: 0.5rem;
 }
 
 .offerings-content {
     padding: 4rem 0;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+}
+
+.offerings-content .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
 }
 
 .cta-section {
@@ -695,6 +747,88 @@ body {
     color: #94a3b8;
     font-size: 0.9rem;
     margin: 0;
+}
+
+/* About Page Styles */
+.about-content {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+}
+
+.about-content .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.about-section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(30, 41, 59, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid #334155;
+    border-radius: 1rem;
+}
+
+.about-section .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-text {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.mission-quote, .vision-quote {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #06b6d4;
+    font-style: italic;
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(6, 182, 212, 0.1);
+    border-left: 4px solid #06b6d4;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.feature-list li {
+    color: #cbd5e1;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.feature-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
 /* Success Stories Section */

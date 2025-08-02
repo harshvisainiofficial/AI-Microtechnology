@@ -172,6 +172,10 @@ def curriculum():
 def offerings():
     return render_template('offerings.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 @app.route('/hackathon', methods=['GET', 'POST'])
 def hackathon():
     if 'username' not in session:
