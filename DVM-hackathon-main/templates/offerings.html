@@ -72,22 +72,32 @@
     <div class="landing-page">
     <main class="offerings-page">
         <section class="hero-section">
+            <div class="hero-background">
+                <div class="bg-blur bg-blur-1"></div>
+                <div class="bg-blur bg-blur-2"></div>
+                <div class="bg-blur bg-blur-3"></div>
+            </div>
+            
             <div class="hero-content">
-                <div class="hero-logo">
-                    <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI Driven School" class="main-logo">
+                <div class="hero-left">
+                    <div class="hero-logo">
+                        <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI Driven School" class="main-logo">
+                    </div>
                 </div>
                 
-                <div class="hero-badge">
-                    <span class="badge-text">🚀 Comprehensive AI Education</span>
+                <div class="hero-right">
+                    <div class="hero-badge">
+                        <span class="badge-text">🚀 Comprehensive AI Education</span>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        What We <span class="gradient-text">Offer</span>
+                    </h1>
+                    
+                    <p class="hero-description">
+                        Discover our comprehensive AI education modules designed to empower the next generation of innovators. From prompt engineering to AI filmmaking, we cover all aspects of modern AI technology.
+                    </p>
                 </div>
-                
-                <h1 class="hero-title">
-                    What We <span class="gradient-text">Offer</span>
-                </h1>
-                
-                <p class="hero-description">
-                    Discover our comprehensive AI education modules designed to empower the next generation of innovators. From prompt engineering to AI filmmaking, we cover all aspects of modern AI technology.
-                </p>
             </div>
         </section>
 
@@ -158,8 +168,6 @@
                 </div>
             </div>
         </section>
-
-
     </main>
 
         <!-- Footer -->

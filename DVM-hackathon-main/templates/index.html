@@ -80,43 +80,24 @@
                 </div>
                 
                 <div class="hero-content">
-                    <div class="hero-logo">
-                        <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI-Driven School Logo" class="main-logo">
-                    </div>
-                    
-                    <div class="hero-badge">
-                        <span>🚀 Leading AI Education Platform 2025</span>
-                    </div>
-                    
-                    <h1 class="hero-title">
-                        Transforming Education with <span class="gradient-text">AI-Driven Learning</span>
-                    </h1>
-                    
-                    <p class="hero-description">
-                        Experience personalized learning with AI that adapts to every student. Our AI education platform helps students build real-world projects while preparing them for future careers in technology.
-                    </p>
-
-                    <!-- Stats -->
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">👥 5000+</div>
-                            <p class="stat-label">Students Empowered</p>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">🏆 100+</div>
-                            <p class="stat-label">Real-World Projects</p>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">📈 40%</div>
-                            <p class="stat-label">Avg. Business Growth</p>
+                    <div class="hero-left">
+                        <div class="hero-logo">
+                            <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI-Driven School Logo" class="main-logo">
                         </div>
                     </div>
-
-                    <!-- Quick Overview -->
-                    <div class="overview-section">
-                        <h2 class="section-title">Transform Your Future with AI</h2>
-                        <p class="section-description">Join our comprehensive AI education program and become part of the next generation of innovators</p>
-                        <a href="{{ url_for('offerings') }}" class="cta-btn primary">Explore Our Programs</a>
+                    
+                    <div class="hero-right">
+                        <div class="hero-badge">
+                            <span>🚀 Leading AI Education Platform 2025</span>
+                        </div>
+                        
+                        <h1 class="hero-title">
+                            Transforming Education with <span class="gradient-text">AI-Driven Learning</span>
+                        </h1>
+                        
+                        <p class="hero-description">
+                            Experience personalized learning with AI that adapts to every student. Our AI education platform helps students build real-world projects while preparing them for future careers in technology.
+                        </p>
                     </div>
                 </div>
             </section>
@@ -453,5 +434,29 @@
 
 
     </div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.blog-card, .transformation-card, .program-card');
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 </html>
