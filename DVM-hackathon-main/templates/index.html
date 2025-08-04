@@ -7,6 +7,84 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Statistics Section */
+        .stats-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.8));
+            border-top: 1px solid rgba(6, 182, 212, 0.2);
+            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem 1rem;
+            background: rgba(6, 182, 212, 0.1);
+            border-radius: 1rem;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(6, 182, 212, 0.15);
+            border-color: rgba(6, 182, 212, 0.4);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: #06b6d4;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                max-width: 400px;
+            }
+            
+            .stat-icon {
+                font-size: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .stat-label {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Flash Messages -->
@@ -37,10 +115,10 @@
                 <div class="nav-dropdown">
                     <button class="nav-dropdown-btn">Blogs & Stories <i class="fas fa-chevron-down"></i></button>
                     <div class="nav-dropdown-content">
-                        <a href="#success-stories">Success Stories</a>
-                        <a href="#achievements">Student Achievements</a>
-                        <a href="#transformations">School Transformations</a>
-                        <a href="#blog">AI Education Blog</a>
+                        <a href="{{ url_for('success_stories') }}">Success Stories</a>
+                        <a href="{{ url_for('student_achievements') }}">Student Achievements</a>
+                        <a href="{{ url_for('school_transformation') }}">School Transformations</a>
+                        <a href="{{ url_for('blog') }}">AI Education Blog</a>
                         <a href="#news">News & Updates</a>
                     </div>
                 </div>
@@ -102,6 +180,35 @@
                 </div>
             </section>
 
+            <!-- Statistics Section -->
+            <section class="stats-section">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Schools</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="stat-number">50,000+</div>
+                            <div class="stat-label">Prompts</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Success Stories Section -->
             <section class="success-stories">
                 <div class="section-header">
@@ -119,33 +226,33 @@
                 <div class="stories-grid">
                     <div class="story-card">
                         <div class="story-image">
-                            <img src="https://images.pexels.com/photos/1070850/pexels-photo-1070850.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bakery Website Project">
-                            <div class="story-category">Business Growth</div>
+                            <img src="{{ url_for('static', filename='g8.jpg') }}" alt="Quantum Satellite">
+                            <div class="story-category">Skill Growth</div>
                         </div>
                         <div class="story-content">
-                            <h3>Bakery Website Boosts Online Orders by 40%</h3>
-                            <p class="story-student">Priya Sharma, Grade 11</p>
+                            <h3>India's First Quantum Satellite | The Winner of The Kalam Vision</h3>
+                            <p class="story-student">Aaditya Poonia, Grade 9</p>
                             <p class="story-description">
-                                Using AI-driven SEO tools and modern web development, Priya created a responsive website for a local bakery that increased their online orders by 40% within 3 months.
+                                Using AI-driven technology and modern QPS development, Me created a responsive Simulation for a Defense Positioning System.
                             </p>
                             <div class="story-skills">
                                 <span class="skill-tag">Web Development</span>
-                                <span class="skill-tag">AI SEO Tools</span>
-                                <span class="skill-tag">E-commerce</span>
+                                <span class="skill-tag">AI Tools</span>
+                                <span class="skill-tag">ISRO and DRDO</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="story-card">
                         <div class="story-image">
-                            <img src="https://images.pexels.com/photos/3608311/pexels-photo-3608311.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Temple Website Project">
+                            <img src="{{ url_for('static', filename='g14.jpg') }}" alt="Students with Small & Medium Entreprises"> alt="Temple Website Project">
                             <div class="story-category">Community Impact</div>
                         </div>
                         <div class="story-content">
                             <h3>Temple Website Enhances Community Engagement by 25%</h3>
-                            <p class="story-student">Arjun Patel, Grade 12</p>
+                            <p class="story-student">Nitya Saini, Grade 10</p>
                             <p class="story-description">
-                                Arjun developed a comprehensive temple website with event management, donation tracking, and community features, boosting engagement by 25%.
+                                I developed a comprehensive temple website with event management, donation tracking, and community features, boosting engagement by 25%.
                             </p>
                             <div class="story-skills">
                                 <span class="skill-tag">Full-Stack Development</span>
@@ -155,130 +262,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
 
-        <!-- AI Education Blog Section -->
-        <section id="blog" class="blog-section">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-tag">📚 Knowledge Hub</div>
-                    <h2 class="section-title">The Future of Learning: <span class="gradient-text">AI in Education</span></h2>
-                    <p class="section-description">Stay updated with the latest trends, research, and insights on how artificial intelligence is transforming education worldwide.</p>
-                </div>
-
-                <div class="featured-article">
-                    <div class="article-content">
-                        <div class="featured-badge">Featured Article</div>
-                        <h3 class="article-title">How AI-Driven Schools Are Revolutionizing Education in 2025</h3>
-                        <p class="article-excerpt">Discover how artificial intelligence is transforming traditional classrooms into personalized learning environments that adapt to every student's needs.</p>
-                        <div class="article-meta">
-                            <span class="author">Dr. Sarah Johnson</span>
-                            <span class="date">January 15, 2025</span>
-                            <span class="read-time">8 min read</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="blog-grid">
-                    <div class="blog-card">
-                        <div class="blog-category">AI Learning Tools</div>
-                        <h4 class="blog-title">Top 15 AI Tools for Teachers and Students in 2025</h4>
-                        <p class="blog-excerpt">From Quizlet Q-Chat to Duolingo's AI tutors, explore the most effective AI learning tools.</p>
-                        <div class="blog-meta">
-                            <span class="author">Prof. Michael Chen</span>
-                            <span class="read-time">12 min read</span>
-                        </div>
-                    </div>
-                    
-                    <div class="blog-card">
-                        <div class="blog-category">K-12 Education</div>
-                        <h4 class="blog-title">Why AI Is the Future of K-12 Education: A Complete Guide</h4>
-                        <p class="blog-excerpt">Understanding how AI addresses learning gaps and prepares students for a technology-driven future.</p>
-                        <div class="blog-meta">
-                            <span class="author">Dr. Priya Sharma</span>
-                            <span class="read-time">10 min read</span>
-                        </div>
-                    </div>
-                    
-                    <div class="blog-card">
-                        <div class="blog-category">Educational Research</div>
-                        <h4 class="blog-title">How Does AI Help Students Learn? The Science Behind Personalized Education</h4>
-                        <p class="blog-excerpt">Explore the cognitive science and machine learning algorithms that make AI-powered learning effective.</p>
-                        <div class="blog-meta">
-                            <span class="author">Dr. James Wilson</span>
-                            <span class="read-time">15 min read</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Transforming Education Section -->
-        <section id="transforming-education" class="transforming-section">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-tag">🚀 Educational Revolution</div>
-                    <h2 class="section-title">Revolutionizing Education with <span class="gradient-text">AI at AI-Driven School</span></h2>
-                    <p class="section-description">Discover how artificial intelligence is transforming traditional education into a personalized, efficient, and future-ready learning experience.</p>
-                </div>
-
-                <div class="transformations-grid">
-                    <div class="transformation-card">
-                        <div class="transformation-icon cyan-gradient">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h3 class="transformation-title">Personalized Learning Pathways</h3>
-                        <p class="transformation-description">AI adapts to each student's learning style, pace, and preferences, creating customized educational experiences.</p>
-                        <ul class="transformation-benefits">
-                            <li>Adaptive content delivery</li>
-                            <li>Individual progress tracking</li>
-                            <li>Learning style optimization</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="transformation-card">
-                        <div class="transformation-icon emerald-gradient">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h3 class="transformation-title">Automated Administrative Tasks</h3>
-                        <p class="transformation-description">Free up valuable teacher time by automating grading, lesson planning, and administrative workflows.</p>
-                        <ul class="transformation-benefits">
-                            <li>Automated grading systems</li>
-                            <li>Smart lesson planning</li>
-                            <li>Attendance tracking</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="transformation-card">
-                        <div class="transformation-icon purple-gradient">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3 class="transformation-title">Enhanced Student Engagement</h3>
-                        <p class="transformation-description">Interactive AI tutors, virtual labs, and gamified learning experiences keep students motivated.</p>
-                        <ul class="transformation-benefits">
-                            <li>AI-powered chatbots</li>
-                            <li>Virtual reality labs</li>
-                            <li>Gamified assessments</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="transformation-card">
-                        <div class="transformation-icon orange-gradient">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                        <h3 class="transformation-title">Future-Ready Career Preparation</h3>
-                        <p class="transformation-description">Prepare students for tomorrow's job market with hands-on experience in AI and emerging technologies.</p>
-                        <ul class="transformation-benefits">
-                            <li>Real-world AI projects</li>
-                            <li>Industry partnerships</li>
-                            <li>Certification programs</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        
         <!-- Programs Section -->
         <section id="programs" class="programs-section">
             <div class="container">

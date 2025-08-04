@@ -23,5 +23,28 @@ function initAboutAnimations() {
     });
 }
 
+// Blog card animations
+function initBlogAnimations() {
+    const blogCards = document.querySelectorAll('.blog-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    blogCards.forEach(card => {
+        observer.observe(card);
+    });
+}
+
 // Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initAboutAnimations);
+document.addEventListener('DOMContentLoaded', function() {
+    initAboutAnimations();
+    initBlogAnimations();
+});

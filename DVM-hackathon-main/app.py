@@ -5,6 +5,7 @@ import datetime
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'  # Replace with a secure key
+app.config['TEMPLATES_AUTO_RELOAD'] = True  # Add this line
 
 # Database setup
 def init_db():
@@ -101,25 +102,93 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-
+        
         conn = sqlite3.connect('users.db')
         c = conn.cursor()
         c.execute('SELECT * FROM users WHERE username = ? AND password = ?', (username, password))
         user = c.fetchone()
         conn.close()
-
+        
         if user:
             session['username'] = username
             return redirect(url_for('home'))
         else:
-            flash('Invalid username or password', 'error')
+            flash('Invalid username or password!', 'error')
     return render_template('login.html')
 
 @app.route('/home')
 def home():
     if 'username' not in session:
         return redirect(url_for('login'))
-    return render_template('home.html')
+    
+    conn = sqlite3.connect('users.db')
+    c = conn.cursor()
+    c.execute('SELECT * FROM users WHERE username = ?', (session['username'],))
+    user = c.fetchone()
+    c.execute('SELECT points FROM credits WHERE username = ?', (session['username'],))
+    credits_row = c.fetchone()
+    credits = credits_row[0] if credits_row else 0
+    conn.close()
+    
+    if user:
+        user_data = {
+            'full_name': user[1],
+            'school_name': user[2],
+            'class': user[3],
+            'roll_no': user[4],
+            'phone_no': user[6],
+            'email': user[7],
+            'username': user[0],
+            'birthdate': user[8],
+            'credits': credits
+        }
+        return render_template('home.html', user=user_data)
+    return redirect(url_for('login'))
+
+@app.route('/courses')
+def courses():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
+    conn = sqlite3.connect('users.db')
+    c = conn.cursor()
+    c.execute('SELECT points FROM credits WHERE username = ?', (session['username'],))
+    credits_row = c.fetchone()
+    credits = credits_row[0] if credits_row else 0
+    conn.close()
+    
+    user_data = {'credits': credits}
+    return render_template('courses.html', user=user_data)
+
+@app.route('/projects')
+def projects():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
+    conn = sqlite3.connect('users.db')
+    c = conn.cursor()
+    c.execute('SELECT points FROM credits WHERE username = ?', (session['username'],))
+    credits_row = c.fetchone()
+    credits = credits_row[0] if credits_row else 0
+    conn.close()
+    
+    user_data = {'credits': credits}
+    return render_template('projects.html', user=user_data)
+
+@app.route('/curriculum')
+def curriculum():
+    if 'user_id' not in session:
+        flash('Please log in to access this page.', 'error')
+        return redirect(url_for('login'))
+    
+    user_data = {
+        'id': session['user_id'],
+        'username': session['username'],
+        'email': session['email'],
+        'credits': session.get('credits', 100)
+    }
+    
+    return render_template('curriculum.html', user=user_data)
 
 @app.route('/profile')
 def profile():
@@ -150,24 +219,6 @@ def profile():
         return render_template('portal.html', user=user_data)
     return redirect(url_for('login'))
 
-@app.route('/courses')
-def courses():
-    if 'username' not in session:
-        return redirect(url_for('login'))
-    return render_template('courses.html')
-
-@app.route('/projects')
-def projects():
-    if 'username' not in session:
-        return redirect(url_for('login'))
-    return render_template('projects.html')
-
-@app.route('/curriculum')
-def curriculum():
-    if 'username' not in session:
-        return redirect(url_for('login'))
-    return render_template('curriculum.html')
-
 @app.route('/offerings')
 def offerings():
     return render_template('offerings.html')
@@ -181,75 +232,75 @@ def hackathon():
     if 'username' not in session:
         return redirect(url_for('login'))
     
-    if request.method == 'POST':
-        team_name = request.form['team_name'].lower().replace(' ', '')
-        code = request.form['code']
-        
-        if not team_name:
-            flash('Team name is required', 'error')
-            return redirect(url_for('hackathon'))
-        
-        if not code.strip():
-            flash('Code is required', 'error')
-            return redirect(url_for('hackathon'))
-
-        conn = sqlite3.connect('users.db')
-        c = conn.cursor()
-        
-        # Check if team already exists
-        c.execute('SELECT * FROM teams WHERE team_name = ?', (team_name,))
-        team = c.fetchone()
-        
-        if team:
-            # Team exists, check if code matches
-            if team[1] != code:
-                flash('Team already has a different submission. Please contact your team.', 'error')
-                conn.close()
-                return redirect(url_for('hackathon'))
-        else:
-            # Insert new team and code
-            c.execute('''INSERT INTO teams (team_name, code, submission_time)
-                         VALUES (?, ?, ?)''',
-                      (team_name, code, datetime.datetime.now().isoformat()))
-        
-        # Link user to team and store code in hackathon_submissions
-        c.execute('''INSERT INTO hackathon_submissions (username, team_name, code)
-                     VALUES (?, ?, ?)''',
-                  (session['username'], team_name, code))
-        
-        conn.commit()
-        conn.close()
-        
-        flash('Code submitted successfully!', 'success')
-        return redirect(url_for('hackathon'))
+    conn = sqlite3.connect('users.db')
+    c = conn.cursor()
     
-    return render_template('hackathon.html')
+    if request.method == 'POST':
+        team_name = request.form['team_name']
+        code = request.form['code']
+        submission_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        
+        try:
+            c.execute('INSERT INTO teams (team_name, code, submission_time) VALUES (?, ?, ?)',
+                     (team_name, code, submission_time))
+            c.execute('INSERT INTO hackathon_submissions (username, team_name, code) VALUES (?, ?, ?)',
+                     (session['username'], team_name, code))
+            conn.commit()
+            flash('Code submitted successfully!', 'success')
+        except sqlite3.IntegrityError:
+            flash('Team name already exists! Please choose a different name.', 'error')
+    
+    c.execute('SELECT points FROM credits WHERE username = ?', (session['username'],))
+    credits_row = c.fetchone()
+    credits = credits_row[0] if credits_row else 0
+    conn.close()
+    
+    user_data = {'credits': credits}
+    return render_template('hackathon.html', user=user_data)
 
 @app.route('/logout')
 def logout():
     session.pop('username', None)
-    flash('You have been logged out.', 'success')
-    return redirect(url_for('login'))
+    return redirect(url_for('index'))
 
 @app.before_request
 def award_credits():
     if 'username' in session:
         conn = sqlite3.connect('users.db')
         c = conn.cursor()
-        c.execute('SELECT points, last_update FROM credits WHERE username = ?', (session['username'],))
-        row = c.fetchone()
+        
+        # Get current time
         now = datetime.datetime.now().timestamp()
-        if row:
-            points, last_update = row
-            minutes = int((now - last_update) // 60)
-            if minutes > 0:
-                new_points = points + minutes
-                c.execute('UPDATE credits SET points = ?, last_update = ? WHERE username = ?', (new_points, now, session['username']))
+        
+        # Check last update time
+        c.execute('SELECT last_update FROM credits WHERE username = ?', (session['username'],))
+        result = c.fetchone()
+        
+        if result:
+            last_update = result[0]
+            # Award 1 credit every 10 minutes (600 seconds)
+            if now - last_update >= 600:
+                c.execute('UPDATE credits SET points = points + 1, last_update = ? WHERE username = ?', 
+                         (now, session['username']))
                 conn.commit()
-        else:
-            c.execute('INSERT INTO credits (username, points, last_update) VALUES (?, ?, ?)', (session['username'], 0, now))
-            conn.commit()
+        
         conn.close()
+
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
+
+@app.route('/school-transformation')
+def school_transformation():
+    return render_template('school_transformation.html')
+
+@app.route('/success-stories')
+def success_stories():
+    return render_template('success_stories.html')
+
+@app.route('/student-achievements')
+def student_achievements():
+    return render_template('student_achievements.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
