@@ -16,8 +16,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
         
-        /* Header styling to match main page */
-        /* Add the enhanced header styling and profile icon CSS */
+        /* Header styling to match home page */
         .header {
             background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
@@ -65,6 +64,33 @@
         .nav-link.active {
             color: #06b6d4;
             background: rgba(6, 182, 212, 0.1);
+        }
+        
+        .credits-display {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: #06b6d4;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .credits-label {
+            margin-right: 0.5rem;
+        }
+        
+        /* Remove the old profile-icon styling and use the standard nav-link styling */
+        .profile-dropdown .profile-icon {
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .profile-dropdown .profile-icon:hover {
+            background: rgba(6, 182, 212, 0.1);
+            transform: scale(1.1);
         }
         
         .profile-icon {
@@ -269,12 +295,18 @@
             </div>
             
             <nav class="nav-menu">
-                <a href="{{ url_for('profile') }}" class="nav-link profile-icon active">🧑‍💼</a>
+                <div class="profile-dropdown">
+                    <a href="#" class="nav-link profile-icon">🧑‍💼</a>
+                    <div class="profile-dropdown-content">
+                        <a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> Profile</a>
+                        <a href="{{ url_for('vouchers') }}"><i class="fas fa-ticket-alt"></i> Vouchers</a>
+                        <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
                 <a href="{{ url_for('home') }}" class="nav-link">Home</a>
                 <a href="{{ url_for('courses') }}" class="nav-link">Courses</a>
                 <a href="{{ url_for('projects') }}" class="nav-link">Projects</a>
                 <a href="{{ url_for('hackathon') }}" class="nav-link">Hackathon</a>
-                <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
             </nav>
             
             <div class="credits-display">

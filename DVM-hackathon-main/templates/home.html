@@ -341,12 +341,18 @@
             </div>
             
             <nav class="nav-menu">
-                <a href="{{ url_for('profile') }}" class="nav-link profile-icon">🧑‍💼</a>
+                <div class="profile-dropdown">
+                    <a href="#" class="nav-link profile-icon">🧑‍💼</a>
+                    <div class="profile-dropdown-content">
+                        <a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> Profile</a>
+                        <a href="{{ url_for('vouchers') }}"><i class="fas fa-ticket-alt"></i> Vouchers</a>
+                        <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
                 <a href="{{ url_for('home') }}" class="nav-link active">Home</a>
                 <a href="{{ url_for('courses') }}" class="nav-link">Courses</a>
                 <a href="{{ url_for('projects') }}" class="nav-link">Projects</a>
                 <a href="{{ url_for('hackathon') }}" class="nav-link">Hackathon</a>
-                <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
             </nav>
             
             <div class="credits-display">

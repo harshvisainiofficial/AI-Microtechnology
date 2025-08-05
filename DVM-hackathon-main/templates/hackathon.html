@@ -65,8 +65,58 @@
         
         .nav-link:hover,
         .nav-link.active {
+            color: #06b6d4;
+            background: rgba(6, 182, 212, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .credits-display {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: #06b6d4;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .main-page h1 {
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hackathon-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .hackathon-card:hover {
+            border-color: #06b6d4;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.2);
+        }
+        
+        .submit-btn {
             background: linear-gradient(135deg, #06b6d4, #3b82f6);
             color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
         }
@@ -82,8 +132,20 @@
         }
         
         .credits-display .credits-label {
-            opacity: 0.9;
             margin-right: 0.5rem;
+        }
+        
+        .profile-dropdown .profile-icon {
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .profile-dropdown .profile-icon:hover {
+            background: rgba(6, 182, 212, 0.1);
+            transform: scale(1.1);
         }
         
         .credits-display .credits-value {
@@ -233,12 +295,18 @@
             </div>
             
             <nav class="nav-menu">
-                <a href="{{ url_for('profile') }}" class="nav-link">🧑‍💼</a>
+                <div class="profile-dropdown">
+                    <a href="#" class="nav-link profile-icon">🧑‍💼</a>
+                    <div class="profile-dropdown-content">
+                        <a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> Profile</a>
+                        <a href="{{ url_for('vouchers') }}"><i class="fas fa-ticket-alt"></i> Vouchers</a>
+                        <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
                 <a href="{{ url_for('home') }}" class="nav-link">Home</a>
                 <a href="{{ url_for('courses') }}" class="nav-link">Courses</a>
                 <a href="{{ url_for('projects') }}" class="nav-link">Projects</a>
                 <a href="{{ url_for('hackathon') }}" class="nav-link active">Hackathon</a>
-                <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
             </nav>
             
             <div class="credits-display">

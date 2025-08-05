@@ -302,5 +302,34 @@ def success_stories():
 def student_achievements():
     return render_template('student_achievements.html')
 
+@app.route('/vouchers')
+def vouchers():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
+    conn = sqlite3.connect('users.db')
+    c = conn.cursor()
+    c.execute('SELECT * FROM users WHERE username = ?', (session['username'],))
+    user = c.fetchone()
+    c.execute('SELECT points FROM credits WHERE username = ?', (session['username'],))
+    credits_row = c.fetchone()
+    credits = credits_row[0] if credits_row else 0
+    conn.close()
+
+    if user:
+        user_data = {
+            'full_name': user[1],
+            'school_name': user[2],
+            'class': user[3],
+            'roll_no': user[4],
+            'phone_no': user[6],
+            'email': user[7],
+            'username': user[0],
+            'birthdate': user[8],
+            'credits': credits
+        }
+        return render_template('vouchers.html', user=user_data)
+    return redirect(url_for('login'))
+
 if __name__ == '__main__':
     app.run(debug=True)

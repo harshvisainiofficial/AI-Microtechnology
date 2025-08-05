@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Department of Visual Media</title>
+    <title>Register - AI Mincrotechologies</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         /* Registration page specific styles */
@@ -172,8 +172,11 @@
 <body>
     <div class="container">
         <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI Driven School Logo" class="logo">
-        <h1>Department of Visual Media</h1>
+        <h1>AI Mircrotechnologies</h1>
         <h2>Registration</h2>
+        <div class="link">
+            <a href="{{ url_for('login') }}">Already registered? Login here</a>
+        </div>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 <div class="flash-message {{ messages[0][0] }}">
@@ -242,9 +245,7 @@
             </div>
             <button type="submit">Enroll Now</button>
         </form>
-        <div class="link">
-            <a href="{{ url_for('login') }}">Already registered? Login here</a>
-        </div>
+        
     </div>
 </body>
 </html>
