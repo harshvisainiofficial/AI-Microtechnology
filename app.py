@@ -3,7 +3,7 @@ import sqlite3
 import os
 import datetime
 
-app = Flask(__name__, template_folder=os.path.dirname(os.path.abspath(__file__)))
+app = Flask(__name__, template_folder='templates')
 app.secret_key = 'your_secret_key_here'  # Replace with a secure key
 app.config['TEMPLATES_AUTO_RELOAD'] = True  # Add this line
 
