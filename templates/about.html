@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - AI-Driven School</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="landing-page">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}">
+                            {{ message }}
+                            <button class="flash-close" onclick="this.parentElement.style.display='none'">&times;</button>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Navigation Header -->
+        <header class="header">
+            <div class="container">
+                <div class="nav-brand">
+                    <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI-Driven School Logo" class="logo">
+                </div>
+                
+                <nav class="nav-menu">
+                    <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+                    <a href="{{ url_for('about') }}" class="nav-link active">About</a>
+                    
+                    <div class="nav-dropdown">
+                        <button class="nav-dropdown-btn">Blogs & Stories <i class="fas fa-chevron-down"></i></button>
+                        <div class="nav-dropdown-content">
+                            <a href="{{ url_for('success_stories') }}">Success Stories</a>
+                            <a href="{{ url_for('student_achievements') }}">Student Achievements</a>
+                            <a href="{{ url_for('school_transformation') }}">School Transformations</a>
+                            <a href="{{ url_for('blog') }}">AI Education Blog</a>
+                            <a href="#news">News & Updates</a>
+                        </div>
+                    </div>
+                    
+                    <a href="{{ url_for('offerings') }}" class="nav-link">What We Offer</a>
+                    
+                    <div class="nav-dropdown">
+                        <button class="nav-dropdown-btn">AI Courses <i class="fas fa-chevron-down"></i></button>
+                        <div class="nav-dropdown-content">
+                            <div class="dropdown-header">
+                                <div class="prompts-count">50000+ Prompts</div>
+                                <div class="prompts-desc">AI-powered learning resources</div>
+                            </div>
+                            <a href="#app-dev">App Development</a>
+                            <a href="#game-design">Game Design</a>
+                            <a href="#ai-film">AI Film Making</a>
+                            <a href="#prompts">Browse All Prompts</a>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Auth Buttons -->
+                <div class="auth-buttons">
+                    <a href="{{ url_for('register') }}" class="signup-btn">Sign Up</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="landing-page">
+        <main class="about-page">
+            <section class="hero-section">
+                <div class="hero-background">
+                    <div class="bg-blur bg-blur-1"></div>
+                    <div class="bg-blur bg-blur-2"></div>
+                    <div class="bg-blur bg-blur-3"></div>
+                </div>
+                
+                <div class="hero-content">
+                    <div class="hero-left">
+                        <div class="hero-logo">
+                            <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI-Driven School Logo" class="main-logo">
+                        </div>
+                    </div>
+                    
+                    <div class="hero-right">
+                        <div class="hero-badge">
+                            <span class="badge-text">🚀 Leading AI Education Platform 2025</span>
+                        </div>
+                        
+                        <h1 class="hero-title">
+                            About <span class="gradient-text">AI-Driven School</span>
+                        </h1>
+                        
+                        <p class="hero-description">
+                            "Transforming Education Through Artificial Intelligence"
+                        </p>
+                        
+                        <p class="hero-intro-text">
+                            AI Driven School is a next-generation educational startup designed to bring Artificial Intelligence (AI) education to schools across India. Our mission is to empower students from Class 8 to 12 with real-world skills in AI, Machine Learning, Data Science, Robotics, and Coding through a structured, industry-relevant curriculum. We aim to not just prepare students for jobs—but to make them leaders in the AI-powered future.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        <!-- About Content -->
+        <section class="about-content">
+            <div class="container">
+                <!-- Mission -->
+                <div class="about-section animate-section" data-direction="right">
+                    <div class="section-content">
+                        <div class="section-text-content">
+                            <h2 class="section-title">Mission</h2>
+                            <div class="mission-quote">
+                                "To transform every school in India into an AI-powered learning hub and ensure every student gets the opportunity to learn Artificial Intelligence."
+                            </div>
+                            <p class="section-text">
+                                Our mission is to democratize AI education by integrating hands-on AI learning and AI hackathons into the core learning environment of schools. We believe in nurturing curiosity, creativity, and problem-solving skills in students, making them ready for the challenges of tomorrow.
+                            </p>
+                        </div>
+                        <div class="section-image">
+                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Mission" class="section-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vision -->
+                <div class="about-section animate-section" data-direction="left">
+                    <div class="section-content">
+                        <div class="section-image">
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Vision" class="section-img">
+                        </div>
+                        <div class="section-text-content">
+                            <h2 class="section-title">Vision</h2>
+                            <div class="vision-quote">
+                                "To make India a global leader in Artificial Intelligence by starting AI education at the grassroots level."
+                            </div>
+                            <p class="section-text">
+                                We envision a future where every child—regardless of their background or location—has access to quality AI learning. Our goal is to build a nationwide network of AI Enabled Schools that nurture future-ready minds equipped with 21st-century skills.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Franchise Model -->
+                <div class="about-section animate-section" data-direction="right">
+                    <div class="section-content">
+                        <div class="section-text-content">
+                            <h2 class="section-title">School as a Franchise for Learning AI Education</h2>
+                            <p class="section-text">
+                                Our model offers a scalable and affordable AI School Franchise Opportunity. Through our AI Driven School™ brand, we partner with schools and provide:
+                            </p>
+                            <ul class="feature-list">
+                                <li>Expert-designed AI curriculum (for Classes 8 to 12)</li>
+                                <li>Bi-monthly AI Hackathons and Innovation Challenges</li>
+                                <li>Teacher training & certification in AI education</li>
+                                <li>Smart LMS with AI labs and project-based learning</li>
+                                <li>Digital branding & marketing support</li>
+                                <li>National recognition as an AI-Powered School</li>
+                            </ul>
+                            <p class="section-text">
+                                This franchise model helps schools become technology leaders in their region and equips students with skills that matter for the future.
+                            </p>
+                        </div>
+                        <div class="section-image">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Franchise" class="section-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why AI Education -->
+                <div class="about-section animate-section" data-direction="left">
+                    <div class="section-content">
+                        <div class="section-image">
+                            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="AI Education" class="section-img">
+                        </div>
+                        <div class="section-text-content">
+                            <h2 class="section-title">Why AI Education?</h2>
+                            <ul class="feature-list">
+                                <li>Over 1 crore (10 million) AI-related jobs are expected in India by 2025.</li>
+                                <li>AI literacy is now a must-have skill, not a luxury.</li>
+                                <li>Students with early AI exposure perform better in innovation, entrepreneurship, and technology leadership.</li>
+                                <li>It builds future-ready capabilities like critical thinking, data analysis, and automated problem-solving.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why AI Driven School -->
+                <div class="about-section animate-section" data-direction="right">
+                    <div class="section-content">
+                        <div class="section-text-content">
+                            <h2 class="section-title">Why AI Driven School?</h2>
+                            <ul class="feature-list">
+                                <li>We provide not just a course, but a complete AI Learning Ecosystem.</li>
+                                <li>The AI Driven School™ trademark enhances your school's brand value and trust.</li>
+                                <li>We focus on real-world application through projects, hackathons, and guided innovation.</li>
+                                <li>Our founding team includes BITS Pilani Alumni, industry mentors, and experienced EdTech professionals.</li>
+                                <li>We empower schools to create a new generation of AI creators, thinkers, and doers.</li>
+                            </ul>
+                        </div>
+                        <div class="section-image">
+                            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="AI Driven School" class="section-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="brand-info">
+                            <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI-Driven School" class="footer-logo">
+                            <h3 class="footer-brand-name">AI-Driven School</h3>
+                        </div>
+                        <p class="footer-description">
+                            Transforming education through artificial intelligence. Join thousands of students already learning with our cutting-edge AI curriculum.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-list">
+                            <li><a href="{{ url_for('about') }}">About Us</a></li>
+                            <li><a href="{{ url_for('offerings') }}">What We Offer</a></li>
+                            <li><a href="#testimonials">Success Stories</a></li>
+                            <li><a href="#">Curriculum</a></li>
+                            <li><a href="#">Teacher Training</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-title">Support</h4>
+                        <ul class="footer-list">
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">API Reference</a></li>
+                            <li><a href="#">Community Forum</a></li>
+                            <li><a href="#">System Status</a></li>
+                            <li><a href="#">Contact Support</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-contact">
+                        <h4 class="footer-title">Contact Us</h4>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>1.ssoni1999@gmail.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+91 7073630877</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Pilani, Rajasthan<br>India - 333031</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 AI-Driven School. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Add this before closing body tag -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
