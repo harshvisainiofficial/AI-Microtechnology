@@ -175,6 +175,11 @@ def projects():
     user_data = {'credits': credits}
     return render_template('projects.html', user=user_data)
 
+@app.route('/ai-film-making')
+def ai_film_making():
+    return render_template('ai_film_making.html')
+
+# Add these missing routes:
 @app.route('/curriculum')
 def curriculum():
     if 'user_id' not in session:
@@ -207,7 +212,7 @@ def profile():
     if user:
         user_data = {
             'full_name': user[1],
-            'school_name': user[2],
+            'father_name': user[2],
             'class': user[3],
             'roll_no': user[4],
             'phone_no': user[6],
@@ -216,7 +221,7 @@ def profile():
             'birthdate': user[8],
             'credits': credits
         }
-        return render_template('portal.html', user=user_data)
+        return render_template('profile.html', user=user_data)
     return redirect(url_for('login'))
 
 @app.route('/offerings')
@@ -229,62 +234,16 @@ def about():
 
 @app.route('/hackathon', methods=['GET', 'POST'])
 def hackathon():
-    if 'username' not in session:
-        return redirect(url_for('login'))
-    
-    conn = sqlite3.connect('users.db')
-    c = conn.cursor()
-    
     if request.method == 'POST':
-        team_name = request.form['team_name']
-        code = request.form['code']
-        submission_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        
-        try:
-            c.execute('INSERT INTO teams (team_name, code, submission_time) VALUES (?, ?, ?)',
-                     (team_name, code, submission_time))
-            c.execute('INSERT INTO hackathon_submissions (username, team_name, code) VALUES (?, ?, ?)',
-                     (session['username'], team_name, code))
-            conn.commit()
-            flash('Code submitted successfully!', 'success')
-        except sqlite3.IntegrityError:
-            flash('Team name already exists! Please choose a different name.', 'error')
-    
-    c.execute('SELECT points FROM credits WHERE username = ?', (session['username'],))
-    credits_row = c.fetchone()
-    credits = credits_row[0] if credits_row else 0
-    conn.close()
-    
-    user_data = {'credits': credits}
-    return render_template('hackathon.html', user=user_data)
+        # Handle hackathon form submission
+        pass
+    return render_template('hackathon.html')
 
 @app.route('/logout')
 def logout():
-    session.pop('username', None)
-    return redirect(url_for('index'))
-
-@app.before_request
-def award_credits():
-    if 'username' in session:
-        conn = sqlite3.connect('users.db')
-        c = conn.cursor()
-        
-        # Get current time
-        now = datetime.datetime.now().timestamp()
-        
-        # Check last update time
-        c.execute('SELECT last_update FROM credits WHERE username = ?', (session['username'],))
-        result = c.fetchone()
-        
-        if result:
-            last_update = result[0]
-            # Award 1 credit every 10 minutes (600 seconds)
-            if now - last_update >= 600:
-                c.execute('UPDATE credits SET points = points + 1, last_update = ? WHERE username = ?', 
-                         (now, session['username']))
-                conn.commit()
-        
-        conn.close()
+    session.clear()
+    flash('You have been logged out successfully.', 'success')
+    return redirect(url_for('login'))
 
 @app.route('/blog')
 def blog():
@@ -319,7 +278,7 @@ def vouchers():
     if user:
         user_data = {
             'full_name': user[1],
-            'school_name': user[2],
+            'father_name': user[2],
             'class': user[3],
             'roll_no': user[4],
             'phone_no': user[6],
@@ -330,6 +289,18 @@ def vouchers():
         }
         return render_template('vouchers.html', user=user_data)
     return redirect(url_for('login'))
+
+@app.route('/web-development')
+def web_development():
+    return render_template('web_development.html')
+
+@app.route('/app-development')
+def app_development():
+    return render_template('app_development.html')
+
+@app.route('/game-design')
+def game_design():
+    return render_template('game_design.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

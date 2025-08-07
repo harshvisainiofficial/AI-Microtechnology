@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development - AI-Driven School</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Hero Section Styles matching home page */
+        .hero-section {
+            position: relative;
+            padding: 4rem 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        
+        .bg-blur {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+        }
+        
+        .bg-blur-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            top: 10%;
+            left: 10%;
+        }
+        
+        .bg-blur-2 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            top: 50%;
+            right: 10%;
+        }
+        
+        .bg-blur-3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            bottom: 10%;
+            left: 50%;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .hero-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .main-logo {
+            width: 200px;
+            height: 200px;
+            filter: drop-shadow(0 10px 20px rgba(6, 182, 212, 0.3));
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: #06b6d4;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            color: #06b6d4;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        
+        .hero-intro-text {
+            font-size: 1rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        /* Curriculum Section */
+        .curriculum-section {
+            background: rgba(30, 41, 59, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 1rem;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 1200px;
+        }
+        
+        .curriculum-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #06b6d4;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .module {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+        
+        .module.animate-right {
+            transform: translateX(100px);
+        }
+        
+        .module.animate-left {
+            transform: translateX(-100px);
+        }
+        
+        .module.animate-right.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .module.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .module-content {
+            flex: 1;
+        }
+        
+        .module-image {
+            width: 200px;
+            height: 150px;
+            border-radius: 0.75rem;
+            object-fit: cover;
+            border: 2px solid rgba(6, 182, 212, 0.3);
+        }
+        
+        .module-title {
+            color: #06b6d4;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .module-content ul {
+            list-style: none;
+            padding: 0;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .module-content li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .module-content li:before {
+            content: "▶";
+            color: #06b6d4;
+            position: absolute;
+            left: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .module {
+                flex-direction: column !important;
+                text-align: center;
+            }
+            
+            .module-image {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-page">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}">
+                            {{ message }}
+                            <button class="flash-close" onclick="this.parentElement.style.display='none'">&times;</button>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Navigation Header -->
+        <header class="header">
+            <div class="container">
+                <div class="nav-brand">
+                    <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI-Driven School Logo" class="logo">
+                </div>
+                
+                <nav class="nav-menu">
+                    <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+                    <a href="{{ url_for('about') }}" class="nav-link">About</a>
+                    
+                    <div class="nav-dropdown">
+                        <button class="nav-dropdown-btn">Blogs & Stories <i class="fas fa-chevron-down"></i></button>
+                        <div class="nav-dropdown-content">
+                            <a href="{{ url_for('success_stories') }}">Success Stories</a>
+                            <a href="{{ url_for('student_achievements') }}">Student Achievements</a>
+                            <a href="{{ url_for('school_transformation') }}">School Transformations</a>
+                            <a href="{{ url_for('blog') }}">AI Education Blog</a>
+                            <a href="#news">News & Updates</a>
+                        </div>
+                    </div>
+                    
+                    <a href="{{ url_for('offerings') }}" class="nav-link">What We Offer</a>
+                    
+                    <div class="nav-dropdown">
+                        <button class="nav-dropdown-btn">AI Courses <i class="fas fa-chevron-down"></i></button>
+                        <div class="nav-dropdown-content">
+                            <div class="dropdown-header">
+                                <div class="prompts-count">50000+ Prompts</div>
+                                <div class="prompts-desc">AI-powered learning resources</div>
+                            </div>
+                            <a href="{{ url_for('web_development') }}">Web Development</a>
+                            <a href="{{ url_for('app_development') }}">App Development</a>
+                            <a href="{{ url_for('game_design') }}">Game Design</a>
+                            <a href="{{ url_for('ai_film_making') }}">AI Film Making</a>
+                            <a href="#prompts">Browse All Prompts</a>
+                        </div>
+                    </div>
+                </nav>
+                
+                <div class="auth-buttons">
+                    <a href="{{ url_for('register') }}" class="signup-btn">Sign Up</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-background">
+                <div class="bg-blur bg-blur-1"></div>
+                <div class="bg-blur bg-blur-2"></div>
+                <div class="bg-blur bg-blur-3"></div>
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-left">
+                    <div class="hero-logo">
+                        <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI-Driven School Logo" class="main-logo">
+                    </div>
+                </div>
+                
+                <div class="hero-right">
+                    <div class="hero-badge">
+                        <span>🌐 AI-Powered Web Development Course</span>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Master Web Development with AI
+                    </h1>
+                    
+                    <p class="hero-description">
+                        "Build the future of the web with AI-powered development tools"
+                    </p>
+                    
+                    <p class="hero-intro-text">
+                        Learn modern web development using cutting-edge AI tools and techniques. From HTML/CSS basics to advanced frameworks, master the skills needed to create responsive, dynamic websites and web applications with AI assistance.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Curriculum Section -->
+        <section class="curriculum-section">
+            <h2 class="curriculum-title">Web Development Curriculum</h2>
+            
+            <div class="module animate-right">
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=200&h=150&fit=crop" alt="Web Foundations">
+                </div>
+                <div class="module-content">
+                    <h3 class="module-title">Module 1: Foundations of Web Development</h3>
+                    <ul>
+                        <li>HTML, CSS, JavaScript basics</li>
+                        <li>DOM Manipulation and responsive design</li>
+                        <li>Introduction to front-end frameworks (e.g., React)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="module animate-left reverse">
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=200&h=150&fit=crop" alt="AI Design">
+                </div>
+                <div class="module-content">
+                    <h3 class="module-title">Module 2: AI-Powered Design & Prototyping</h3>
+                    <ul>
+                        <li>Using tools like Uizard, Figma with AI, Framer AI</li>
+                        <li>Prompt-based UI/UX creation</li>
+                        <li>Generating wireframes with text prompts</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="module animate-right">
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=200&h=150&fit=crop" alt="AI Coding">
+                </div>
+                <div class="module-content">
+                    <h3 class="module-title">Module 3: AI-Assisted Code Generation</h3>
+                    <ul>
+                        <li>Code with GitHub Copilot, Codeium, ChatGPT</li>
+                        <li>Debugging and optimization with LLMs</li>
+                        <li>Creating reusable components with prompt workflows</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="module animate-left reverse">
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=200&h=150&fit=crop" alt="Backend">
+                </div>
+                <div class="module-content">
+                    <h3 class="module-title">Module 4: Back-end Basics + AI Help</h3>
+                    <ul>
+                        <li>Intro to Flask/Django/Node.js</li>
+                        <li>Database setup with AI prompts</li>
+                        <li>Cloud deployment using Render/Vercel + prompt automation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="{{ url_for('static', filename='ai_driven_logo.png') }}" alt="AI-Driven School Logo" class="footer-logo">
+                    <p class="footer-description">Transforming education across India with cutting-edge AI curriculum and innovative teaching methods. Join the future of learning today.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-list">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#offerings">What We Offer</a></li>
+                        <li><a href="#testimonials">Success Stories</a></li>
+                        <li><a href="#">Curriculum</a></li>
+                        <li><a href="#">Teacher Training</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-list">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                        <li><a href="#">System Status</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4 class="footer-title">Contact Us</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>1.ssoni1999@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 7073630877</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Pilani, Rajasthan<br>India - 333031</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 AI-Driven School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation for modules
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const modules = document.querySelectorAll('.module');
+            modules.forEach(module => {
+                observer.observe(module);
+            });
+        });
+    </script>
+</body>
+</html>
