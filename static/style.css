@@ -647,7 +647,7 @@ body {
     z-index: 10;
     display: flex;
     align-items: center;
-    gap: 4rem;
+    gap: 2rem;
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
@@ -659,16 +659,44 @@ body {
 
 .hero-left {
     flex: 0 0 auto;
+    margin-left: -2rem; /* Reduce distance from left edge */
 }
 
 .hero-right {
     flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
     text-align: left;
 }
 
+.hero-text-content {
+    flex: 1;
+}
+
+.hero-image {
+    flex: 0 0 auto;
+}
+
+.hero-profile-image {
+    width: 280px; /* Increased from 200px */
+    height: 280px; /* Increased from 200px */
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid rgba(6, 182, 212, 0.3);
+    box-shadow: 0 15px 35px rgba(6, 182, 212, 0.25);
+    transition: all 0.3s ease;
+}
+
+.hero-profile-image:hover {
+    transform: scale(1.05);
+    border-color: rgba(6, 182, 212, 0.5);
+    box-shadow: 0 20px 45px rgba(6, 182, 212, 0.35);
+}
+
 .main-logo {
-    width: 350px;
-    height: 350px;
+    width: 300px; /* Reduced from 350px */
+    height: 300px; /* Reduced from 350px */
     object-fit: contain;
     filter: drop-shadow(0 15px 30px rgba(6, 182, 212, 0.4));
     animation: logoFloat 3s ease-in-out infinite, logoScale 2s ease-in-out infinite;
@@ -724,12 +752,23 @@ body {
     }
     
     .hero-right {
+        flex-direction: column;
         text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .hero-left {
+        margin-left: 0;
     }
     
     .main-logo {
         width: 250px;
         height: 250px;
+    }
+    
+    .hero-profile-image {
+        width: 180px;
+        height: 180px;
     }
 }
 

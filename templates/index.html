@@ -165,7 +165,7 @@
                         </div>
                     </div>
                     
-                    <div class="hero-right">
+                    <div class="hero-center">
                         <div class="hero-badge">
                             <span>🚀 Leading AI Education Platform 2025</span>
                         </div>
@@ -177,6 +177,12 @@
                         <p class="hero-description">
                             Experience personalized learning with AI that adapts to every student. Our AI education platform helps students build real-world projects while preparing them for future careers in technology.
                         </p>
+                    </div>
+                    
+                    <div class="hero-right">
+                        <div class="hero-image">
+                            <img src="{{ url_for('static', filename='shivam.png') }}" alt="Shivam" class="hero-profile-image">
+                        </div>
                     </div>
                 </div>
             </section>
@@ -267,6 +273,60 @@
         </div>
 
         
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Gallery</h2>
+                    <p class="section-description">Explore our vibrant learning environment and student achievements</p>
+                </div>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='g1.jpg') }}" alt="Student Project 1" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='g2.jpg') }}" alt="Student Project 2" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='g3.jpg') }}" alt="Student Project 3" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='g4.jpg') }}" alt="Student Project 4" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='g5.jpg') }}" alt="Student Project 5" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='g6.jpg') }}" alt="Student Project 6" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='g7.jpg') }}" alt="Student Project 7" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='g8.jpg') }}" alt="Student Project 8" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='g9.jpg') }}" alt="Student Project 9" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='g10.jpg') }}" alt="Student Project 10" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='g11.jpg') }}" alt="Student Project 11" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='g12.jpg') }}" alt="Student Project 12" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='g13.jpg') }}" alt="Student Project 13" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="{{ url_for('static', filename='g14.jpg') }}" alt="Student Project 14" class="gallery-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Programs Section -->
         <section id="programs" class="programs-section">
             <div class="container">
@@ -422,6 +482,69 @@
 
 
     </div>
+
+    <style>
+        .gallery-section {
+            padding: 4rem 0;
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #1e293b;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(6, 182, 212, 0.3);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+
+        /* Removed gallery-overlay, gallery-content styles to eliminate hover text and color */
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .image-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 0 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .image-gallery {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
 
     <script>
         // Intersection Observer for scroll animations
