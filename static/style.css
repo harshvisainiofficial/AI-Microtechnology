@@ -646,10 +646,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
-    gap: 2rem;
+    gap: 3rem;
     min-height: 60vh;
 }
 
@@ -660,7 +660,7 @@ body {
 }
 
 .hero-left {
-    width: 280px;
+    width: 250px;
     flex-shrink: 0;
     display: flex;
     justify-content: center;
@@ -668,7 +668,7 @@ body {
 }
 
 .hero-right {
-    width: 280px;
+    width: 250px;
     flex-shrink: 0;
     display: flex;
     justify-content: center;
@@ -678,7 +678,7 @@ body {
 .hero-center {
     flex: 1;
     text-align: center;
-    padding: 0 1rem;
+    padding: 0 2rem;
 }
 
 .hero-text-content {

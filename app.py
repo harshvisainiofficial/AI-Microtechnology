@@ -212,7 +212,7 @@ def profile():
     if user:
         user_data = {
             'full_name': user[1],
-            'father_name': user[2],
+            'school_name': user[2],
             'class': user[3],
             'roll_no': user[4],
             'phone_no': user[6],
@@ -221,7 +221,7 @@ def profile():
             'birthdate': user[8],
             'credits': credits
         }
-        return render_template('profile.html', user=user_data)
+        return render_template('portal.html', user=user_data)
     return redirect(url_for('login'))
 
 @app.route('/offerings')
@@ -234,10 +234,22 @@ def about():
 
 @app.route('/hackathon', methods=['GET', 'POST'])
 def hackathon():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
+    conn = sqlite3.connect('users.db')
+    c = conn.cursor()
+    c.execute('SELECT points FROM credits WHERE username = ?', (session['username'],))
+    credits_row = c.fetchone()
+    credits = credits_row[0] if credits_row else 0
+    conn.close()
+    
+    user_data = {'credits': credits}
+    
     if request.method == 'POST':
         # Handle hackathon form submission
         pass
-    return render_template('hackathon.html')
+    return render_template('hackathon.html', user=user_data)
 
 @app.route('/logout')
 def logout():
