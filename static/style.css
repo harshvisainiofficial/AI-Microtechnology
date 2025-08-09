@@ -643,31 +643,42 @@ body {
 }
 
 .hero-content {
-    position: relative;
-    z-index: 10;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 2rem;
     max-width: 1200px;
-    width: 100%;
     margin: 0 auto;
+    padding: 0 2rem;
+    gap: 2rem;
+    min-height: 60vh;
 }
 
 .hero-logo {
-    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero-left {
-    flex: 0 0 auto;
-    margin-left: -2rem; /* Reduce distance from left edge */
+    width: 280px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero-right {
-    flex: 1;
+    width: 280px;
+    flex-shrink: 0;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 2rem;
-    text-align: left;
+}
+
+.hero-center {
+    flex: 1;
+    text-align: center;
+    padding: 0 1rem;
 }
 
 .hero-text-content {
@@ -679,29 +690,19 @@ body {
 }
 
 .hero-profile-image {
-    width: 280px; /* Increased from 200px */
-    height: 280px; /* Increased from 200px */
-    object-fit: cover;
+    width: 350px;
+    height: 350px;
     border-radius: 50%;
-    border: 4px solid rgba(6, 182, 212, 0.3);
-    box-shadow: 0 15px 35px rgba(6, 182, 212, 0.25);
-    transition: all 0.3s ease;
+    object-fit: cover;
 }
 
 .hero-profile-image:hover {
     transform: scale(1.05);
-    border-color: rgba(6, 182, 212, 0.5);
-    box-shadow: 0 20px 45px rgba(6, 182, 212, 0.35);
 }
 
 .main-logo {
-    width: 300px; /* Reduced from 350px */
-    height: 300px; /* Reduced from 350px */
-    object-fit: contain;
-    filter: drop-shadow(0 15px 30px rgba(6, 182, 212, 0.4));
-    animation: logoFloat 3s ease-in-out infinite, logoScale 2s ease-in-out infinite;
-    transform-origin: center;
-    transform: scale(1);
+    width: 280px;
+    height: 280px;
 }
 
 @keyframes logoScale {
@@ -747,52 +748,49 @@ body {
 @media (max-width: 768px) {
     .hero-content {
         flex-direction: column;
+        text-align: center;
         gap: 2rem;
-        text-align: center;
+        min-height: auto;
     }
     
+    .hero-left,
     .hero-right {
-        flex-direction: column;
-        text-align: center;
-        gap: 1.5rem;
-    }
-    
-    .hero-left {
-        margin-left: 0;
-    }
-    
-    .main-logo {
-        width: 250px;
-        height: 250px;
+        width: 100%;
     }
     
     .hero-profile-image {
         width: 180px;
         height: 180px;
     }
+    
+    .main-logo {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
 }
 
 .hero-badge {
     display: inline-block;
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(16, 185, 129, 0.1));
-    border: 1px solid rgba(6, 182, 212, 0.2);
-    border-radius: 50px;
-    padding: 0.5rem 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.hero-badge span {
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.3);
     color: #06b6d4;
-    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
     font-weight: 500;
+    margin-bottom: 1.5rem;
 }
 
 .hero-title {
     font-size: 3.5rem;
-    font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: #f1f5f9;
     line-height: 1.1;
+    margin-bottom: 1.5rem;
 }
 
 .gradient-text {
@@ -803,13 +801,10 @@ body {
 }
 
 .hero-description {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     color: #cbd5e1;
-    margin-bottom: 3rem;
     line-height: 1.6;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 1.5rem;
 }
 
 .hero-stats {
@@ -2425,6 +2420,22 @@ select option {
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
     transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.module-image {
+    width: 200px;
+    height: 150px;
+    border-radius: 0.75rem;
+    border: 2px solid rgba(6, 182, 212, 0.3);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.module-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 .space-theme .module:hover {
     transform: scale(1.05) rotate(-2deg);

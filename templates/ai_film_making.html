@@ -92,12 +92,33 @@
             margin-bottom: 1.5rem;
         }
         
+        .hero-right {
+            text-align: right;
+        }
+        
+        .hero-badge {
+            text-align: right;
+        }
+        
+        .hero-title {
+            text-align: right;
+        }
+        
+        .hero-description {
+            text-align: right;
+        }
+        
+        .hero-intro-text {
+            text-align: right;
+        }
+        
         .hero-title {
             font-size: 3rem;
             font-weight: 700;
             color: #f1f5f9;
             line-height: 1.2;
             margin-bottom: 1.5rem;
+            text-align: right;
         }
         
         .hero-description {
@@ -106,6 +127,7 @@
             line-height: 1.7;
             margin-bottom: 1.5rem;
             font-style: italic;
+            text-align: right;
         }
         
         .hero-intro-text {
@@ -113,6 +135,7 @@
             color: #cbd5e1;
             line-height: 1.6;
             margin-bottom: 2rem;
+            text-align: right;
         }
         
         /* Curriculum Section */
@@ -155,7 +178,11 @@
             transform: translateX(-100px);
         }
         
-        .module.reverse {
+        .module.animate-right.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .module.animate-left.reverse {
             flex-direction: row-reverse;
         }
         
@@ -164,15 +191,62 @@
             transform: translateX(0);
         }
         
+        .module-content {
+            flex: 1;
+        }
+        
+        .module-image {
+            width: 200px;
+            height: 150px;
+            border-radius: 0.75rem;
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .module-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .module-title {
+            color: #06b6d4;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .module-content ul {
+            list-style: none;
+            padding: 0;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .module-content li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .module-content li:before {
+            content: "▶";
+            color: #06b6d4;
+            position: absolute;
+            left: 0;
+        }
+        
         @media (max-width: 768px) {
             .module {
                 flex-direction: column !important;
                 text-align: center;
-                transform: translateY(50px) !important;
             }
             
-            .module.visible {
-                transform: translateY(0) !important;
+            .module-image {
+                width: 100%;
+                max-width: 300px;
             }
         }
             .module-content {
@@ -304,21 +378,21 @@
                     </div>
                 </div>
                 
-                <div class="hero-right">
+                <div class="hero-center">
                     <div class="hero-badge">
                         <span>🎬 AI-Powered Film Making Course</span>
                     </div>
                     
                     <h1 class="hero-title">
-                        Create Cinematic Films with AI
+                        Master AI Film Making with <span class="gradient-text">Creative Technology</span>
                     </h1>
                     
                     <p class="hero-description">
-                        "Bring your stories to life with artificial intelligence"
+                        "Create cinematic masterpieces with AI-powered tools"
                     </p>
                     
                     <p class="hero-intro-text">
-                        Master the art of filmmaking using cutting-edge AI tools. From scriptwriting to post-production, learn to create professional films with artificial intelligence assistance.
+                        Learn the art of filmmaking enhanced by artificial intelligence. From scriptwriting to post-production, master AI tools for video editing, visual effects, and storytelling.
                     </p>
                 </div>
             </div>
@@ -330,7 +404,9 @@
             
             <!-- Module 1: Image on LEFT -->
             <div class="module animate-right">
-                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=200&h=150&fit=crop" alt="AI Scriptwriting" class="module-image">
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=200&h=150&fit=crop" alt="AI Scriptwriting">
+                </div>
                 <div class="module-content">
                     <h3 class="module-title">Module 1: AI-Powered Scriptwriting</h3>
                     <ul>
@@ -343,6 +419,9 @@
             
             <!-- Module 2: Image on RIGHT -->
             <div class="module animate-left reverse">
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1596727147705-61a532a659bd?w=200&h=150&fit=crop" alt="Storyboarding">
+                </div>
                 <div class="module-content">
                     <h3 class="module-title">Module 2: Storyboarding & Visual Creation</h3>
                     <ul>
@@ -351,33 +430,36 @@
                         <li>Camera angles and scene layout with text prompts</li>
                     </ul>
                 </div>
-                <img src="https://images.unsplash.com/photo-1596727147705-61a532a659bd?w=200&h=150&fit=crop" alt="Storyboarding" class="module-image">
             </div>
             
             <!-- Module 3: Image on LEFT -->
             <div class="module animate-right">
-                <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=200&h=150&fit=crop" alt="AI Editing" class="module-image">
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=200&h=150&fit=crop" alt="AI Editing">
+                </div>
                 <div class="module-content">
-                    <h3 class="module-title">Module 3: Filmmaking Tools & AI Editing</h3>
+                    <h3 class="module-title">Module 3: AI-Powered Editing & Post-Production</h3>
                     <ul>
-                        <li>Text-to-video with Pika, Runway Gen-2, Sora (when public)</li>
-                        <li>Voice cloning and dubbing with ElevenLabs</li>
-                        <li>AI music generation with Epidemic Sound AI, AIVA</li>
+                        <li>Automated editing with Runway ML, Descript</li>
+                        <li>AI color grading and sound design</li>
+                        <li>Voice synthesis and dubbing</li>
                     </ul>
                 </div>
             </div>
             
             <!-- Module 4: Image on RIGHT -->
             <div class="module animate-left reverse">
+                <div class="module-image">
+                    <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=200&h=150&fit=crop" alt="Publishing">
+                </div>
                 <div class="module-content">
-                    <h3 class="module-title">Module 4: Publishing & Audience Building</h3>
+                    <h3 class="module-title">Module 4: Distribution & Marketing</h3>
                     <ul>
-                        <li>Editing trailers with AI</li>
-                        <li>Prompting for YouTube metadata, titles, thumbnails</li>
-                        <li>Analyzing audience engagement with AI</li>
+                        <li>Platform optimization for YouTube, Netflix, etc.</li>
+                        <li>AI-generated trailers and promotional content</li>
+                        <li>Audience analysis and targeted marketing</li>
                     </ul>
                 </div>
-                <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=200&h=150&fit=crop" alt="Publishing" class="module-image">
             </div>
         </section>
     </div>

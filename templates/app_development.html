@@ -159,6 +159,10 @@
             flex-direction: row-reverse;
         }
         
+        .module.animate-left.reverse {
+            flex-direction: row-reverse;
+        }
+        
         .module.visible {
             opacity: 1;
             transform: translateX(0);
@@ -172,8 +176,16 @@
             width: 200px;
             height: 150px;
             border-radius: 0.75rem;
-            object-fit: cover;
             border: 2px solid rgba(6, 182, 212, 0.3);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .module-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
         
         .module-title {
@@ -292,13 +304,13 @@
                     </div>
                 </div>
                 
-                <div class="hero-right">
+                <div class="hero-center">
                     <div class="hero-badge">
                         <span>📱 AI-Powered App Development Course</span>
                     </div>
                     
                     <h1 class="hero-title">
-                        Build Amazing Mobile Apps with AI
+                        Build Amazing Mobile Apps with <span class="gradient-text">AI</span>
                     </h1>
                     
                     <p class="hero-description">
