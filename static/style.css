@@ -501,7 +501,7 @@ body {
 .profile-dropdown .profile-icon {
     font-size: 1.5rem;
     padding: 0.5rem;
-    border-radius: 50%;
+
     transition: all 0.3s ease;
     cursor: pointer;
 }
@@ -611,7 +611,7 @@ body {
 
 .bg-blur {
     position: absolute;
-    border-radius: 50%;
+
     filter: blur(80px);
     opacity: 0.3;
 }
@@ -692,7 +692,7 @@ body {
 .hero-profile-image {
     width: 350px;
     height: 350px;
-    border-radius: 50%;
+
     object-fit: cover;
 }
 
